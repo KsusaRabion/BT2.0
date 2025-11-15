@@ -46,4 +46,4 @@ jobs:
       # 8. Триггер деплоя на Render
       - name: Trigger Render Deploy
         run: |
-          curl -X POST https://bt-t515.onrender.com
+          curl -X POST https://api.render.com/deploy/srv-d4c5ilf5r7bs73a6s09g

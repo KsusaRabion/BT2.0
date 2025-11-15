@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: nest_tasks_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  nestjs:
+    image: nest-tasks-opt # ← образ из Задания 2
+    depends_on:
+      - postgres
+    ports:
+      - "3001:3000"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: nest_tasks_db
+      JWT_SECRET: superSecretKey
+volumes:
+  pgdata:
